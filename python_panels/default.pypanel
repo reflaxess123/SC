@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pythonPanelDocument>
+  <!-- This file contains definitions of Python interfaces and the
+ interfaces menu.  It should not be hand-edited when it is being
+ used by the application.  Note, that two definitions of the
+ same interface or of the interfaces menu are not allowed
+ in a single file. -->
+  <interfacesMenu type="toolbar">
+    <interfaceItem name="sesi_quick_start"/>
+    <interfaceItem name="ViewerStateBrowser"/>
+    <interfaceItem name="emptypythonpanel"/>
+    <interfaceItem name="roundprogressbar"/>
+    <interfaceItem name="minimalmenubar"/>
+    <interfaceItem name="hdamanager"/>
+    <interfaceItem name="viewport_color_editor"/>
+    <interfaceItem name="SceneGraphDetails"/>
+    <interfaceItem name="SceneGraphLayersPanel"/>
+    <interfaceItem name="codeeditor"/>
+    <separatorItem/>
+    <separatorItem/>
+    <separatorItem/>
+    <interfaceItem name="RedshiftRenderViewPane"/>
+  </interfacesMenu>
+  <interfacesMenu type="panetab">
+    <interfaceItem name="pdgservicemenu"/>
+    <separatorItem/>
+    <interfaceItem name="taskgraphtable"/>
+    <interfaceItem name="ViewerStateBrowser"/>
+    <interfaceItem name="contexteditor"/>
+    <interfaceItem name="sesi_auto_rigs"/>
+    <interfaceItem name="sesi_pose_space_deform"/>
+    <interfaceItem name="sesi_character_picker"/>
+    <interfaceItem name="sesi_pose_library"/>
+    <interfaceItem name="SceneGraphDetails"/>
+    <interfaceItem name="sesi_light_linker"/>
+    <interfaceItem name="SceneGraphLayersPanel"/>
+    <interfaceItem name="sesi_light_mixer"/>
+    <interfaceItem name="viewport_color_editor"/>
+    <interfaceItem name="RedshiftRenderViewPane"/>
+    <interfaceItem name="RedshiftRenderInfoPane"/>
+  </interfacesMenu>
+  <interface name="statusbarwrapper" label="Status Bar Wrapper" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[########################################################################
+# Replace the sample code below with your own to create a
+# PyQt5 or PySide2 interface.  Your code must define an
+# onCreateInterface() function that returns the root widget of
+# your interface.
+#
+# The 'hutil.Qt' is for internal-use only.
+# It is a wrapper module that enables the sample code below to work with
+# either a Qt4 or Qt5 environment for backwards-compatibility.
+#
+# When developing your own Python Panel, import directly from PySide2
+# or PyQt5 instead of from 'hutil.Qt'.
+########################################################################
+
+#
+# SAMPLE CODE
+#
+from hutil.Qt import QtWidgets
+
+def onCreateInterface():
+    widget = QtWidgets.QLabel('Hello World!')
+    return widget
+]]></script>
+    <help><![CDATA[]]></help>
+  </interface>
+  <interface name="emptypythonpanel" label="Empty Python Panel" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[########################################################################
+# Replace the sample code below with your own to create a
+# PyQt5 or PySide2 interface.  Your code must define an
+# onCreateInterface() function that returns the root widget of
+# your interface.
+#
+# The 'hutil.Qt' is for internal-use only.
+# It is a wrapper module that enables the sample code below to work with
+# either a Qt4 or Qt5 environment for backwards-compatibility.
+#
+# When developing your own Python Panel, import directly from PySide2
+# or PyQt5 instead of from 'hutil.Qt'.
+########################################################################
+
+#
+# SAMPLE CODE
+#
+from hutil.Qt import QtWidgets
+
+def onCreateInterface():
+    widget = QtWidgets.QLabel('')
+    return widget
+]]></script>
+    <includeInToolbarMenu menu_position="104" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+  <interface name="roundprogressbar" label="Round Progress Bar" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[import operator
+import colorsys
+import numpy
+
+from PySide2 import QtCore, QtWidgets, QtGui
+from PySide2.QtCore import *
+from PySide2.QtGui import *
+
+
+
+class RoundProgressBar(QtWidgets.QWidget):
+    PositionLeft = 180
+    PositionTop = 90
+    PositionRight = 0
+    PositionBottom = -90
+    
+    def __init__(self, parent=None):
+        super(RoundProgressBar, self).__init__(parent)
+        self.minValue = 0.0
+        self.maxValue = 100.0
+        self.currentValue = 15.0
+        
+        self.startAngle = RoundProgressBar.PositionLeft
+        
+        self.outlineColor = QColor(0, 0, 0)
+        self.outlineWidth = 1
+        
+        self.m_dataPenWidth = 1
+        self.m_rebuildBrush = False
+        self.m_format = '%p%'
+        self.m_decimals = 1
+        self.m_updateFlags = self.PERCENT
+        self.m_gradientData = [QColor(1, 0, 0), QColor(0, 1, 0), QColor(0, 0, 1)]
+
+    VALUE = 0
+    PERCENT = 1
+    MAX = 2
+    
+    def setDataColors(self, stopPoints):
+        if stopPoints != self.m_gradientData:
+            self.m_gradientData = stopPoints
+            self.m_rebuildBrush = True
+            self.update()
+
+    @Slot(int)
+    def setValue(self, val):
+        if self.currentValue != val:
+            if val < self.minValue:
+                self.currentValue = self.minValue
+            elif val > self.maxValue:
+                self.currentValue = self.maxValue
+            else:
+                self.currentValue = val
+            self.update()
+
+    def paintEvent(self, event):
+        radius = min(self.width(), self.height())
+        baseRect = QRectF(1, 1, radius - 2, radius - 2)
+        buffer = QImage(radius, radius, QImage.Format_ARGB32_Premultiplied)
+        p = QPainter(buffer)
+        p.setRenderHint(QPainter.Antialiasing)
+        self.rebuildDataBrushIfNeeded()
+        
+        p.fillRect(buffer.rect(), self.palette().window())
+        
+        self.drawBase(p, baseRect)
+        if self.currentValue > 0:
+            delta = (self.maxValue - self.minValue) / (self.currentValue - self.minValue)
+        else:
+            delta = 0
+        self.drawValue(p, baseRect, self.currentValue, delta)
+        innerRect, innerRadius = self.calculateInnerRect(radius)
+        self.drawInnerBackground(p, innerRect)
+        self.drawText(p, innerRect, innerRadius, self.currentValue)
+        p.end()
+        painter = QPainter(self)
+        #color = QColor(0, 1, 0)
+        #painter.fillRect(baseRect, color)
+        painter.drawImage(0, 0, buffer)
+        painter.end()
+
+    def drawBase(self, p, baseRect):
+        p.setPen(QPen(self.outlineColor, self.outlineWidth))
+        
+        p.setBrush(self.palette().base())
+        p.drawEllipse(baseRect)
+
+    def interpolate(self, weight, values):
+        return numpy.interp1d(weight, [0, 0.5, 1], values)
+                
+    def drawValue(self, p, baseRect, value, delta):
+        if value == self.minValue:
+            return
+            
+        dataPath = QPainterPath()
+        dataPath.setFillRule(Qt.WindingFill)
+        if value == self.maxValue:
+            dataPath.addEllipse(baseRect)
+        else:
+            arcLength = 360.0 / delta
+            dataPath.moveTo(baseRect.center())
+            dataPath.arcTo(baseRect, self.startAngle, -arcLength)
+            dataPath.lineTo(baseRect.center())
+            
+        colors = [(0, 255, 0), (255, 255, 0), (255, 0, 0)]
+        colors = [colorsys.rgb_to_hsv(c[0], c[1], c[2]) for c in colors]
+        h = [c[0] for c in colors]
+        s = [c[1] for c in colors]
+        v = [c[2] for c in colors]
+        
+        weight = value / 100.0
+        #hsv = (p.interpolate(weight, h), p.interpolate(weight, s), p.interpolate(weight, v))
+        
+        color = QColor(255, 0, 0, 127)
+        
+        p.setBrush(color)
+        p.setPen(QPen(self.palette().shadow().color(), self.m_dataPenWidth))
+        p.drawPath(dataPath)
+
+    def calculateInnerRect(self, radius):
+        innerRadius = radius * 0.75
+        delta = (radius - innerRadius) / 2
+        innerRect = QRectF(delta, delta, innerRadius, innerRadius)
+        return innerRect, innerRadius
+
+    def drawInnerBackground(self, p, innerRect):
+        p.setBrush(self.palette().alternateBase())
+        p.drawEllipse(innerRect)
+
+    def drawText(self, p, innerRect, innerRadius, value):
+        if not self.m_format:
+            return
+        f = QFont(self.font())
+        f.setPixelSize(10)
+        fm = QFontMetricsF(f)
+        maxWidth = fm.width(self.valueToText(self.maxValue))
+        delta = innerRadius / maxWidth
+        fontSize = f.pixelSize() * delta * 0.75
+        f.setPixelSize(int(fontSize))
+        p.setFont(f)
+        textRect = QRectF(innerRect)
+        p.setPen(self.palette().text().color())
+        p.drawText(textRect, Qt.AlignCenter, self.valueToText(value))
+
+    def valueToText(self, value):
+        textToDraw = self.m_format
+        if self.m_updateFlags == self.VALUE:
+            textToDraw = textToDraw.replace('%v', str(round(value, self.m_decimals)))
+        if self.m_updateFlags == self.PERCENT:
+            procent = (value - self.minValue) / (self.maxValue - self.minValue) * 100
+            textToDraw = textToDraw.replace('%p', str(round(procent, self.m_decimals)))
+        if self.m_updateFlags == self.MAX:
+            textToDraw = textToDraw.replace('%m', str(round(self.maxValue - self.minValue + 1, self.m_decimals)))
+        return textToDraw
+
+    def rebuildDataBrushIfNeeded(self):
+        if not self.m_rebuildBrush or not self.m_gradientData:
+            return
+        self.m_rebuildBrush = False
+        p = self.palette()
+        dataBrush = QConicalGradient(QPointF(0.5, 0.5), self.startAngle)
+        dataBrush.setCoordinateMode(QGradient.StretchToDeviceMode)
+        for i in range(0, len(self.m_gradientData)):
+            dataBrush.setColorAt(1 - self.m_gradientData[i][0], self.m_gradientData[i][1])
+        p.setBrush(QtGui.QPalette.Highlight, dataBrush)
+        self.setPalette(p)
+        
+  
+def onCreateInterface():
+    progress = RoundProgressBar()
+    progress.currentValue = 77
+
+    #progress.show()    
+    return progress
+]]></script>
+    <includeInToolbarMenu menu_position="105" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+  <interface name="viewport_color_editor" label="Viewport Color Editor" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[########################################################################
+# Replace the sample code below with your own to create a
+# PyQt or PySide interface.  Your code must define a 'onCreateInterface()'
+# function that returns the root widget of your interface.
+########################################################################
+
+import os
+from hutil.Qt import QtCore, QtGui, QtWidgets
+
+class ColorInfo:
+    theDialog = None
+
+    def __init__(self, name, values, comment):
+        self.myName = name
+        self.myValues = values
+        self.myOrigValues = values
+        self.myComment = comment
+
+    def __str__(self):
+        if isinstance(self.myValues, str):
+            return self.myName + ":\t@" + \
+                   self.myValues + "\t# " + \
+                   self.myComment
+        elif self.isAlpha():
+            return self.myName + ":\tALPHA " + \
+                   str(self.myValues[0]) + "\t# " + \
+                   self.myComment
+        else:
+            return self.myName + ":\t" + \
+                   str(self.myValues[0]) + " " + \
+                   str(self.myValues[1]) + " " + \
+                   str(self.myValues[2]) + "\t# " + \
+                   self.myComment
+
+    def getValueStr(self):
+        if isinstance(self.myValues, str):
+            return "@" + self.myValues
+        elif self.isAlpha():
+            valuestr = str(self.myValues[0])
+        else:
+            valuestr = str(self.myValues)
+        return valuestr
+
+    def isAlpha(self):
+        if isinstance(self.myValues, str):
+            return self.findReference(self.myValues).isAlpha()
+        else:
+            return len(self.myValues) == 1
+
+    def getAlpha(self):
+        if isinstance(self.myValues, str):
+            return self.findReference(self.myValues).getAlpha()
+        else:
+            return self.myValues[0]
+
+    def getColor(self):
+        if isinstance(self.myValues, str):
+            return self.findReference(self.myValues).getColor()
+        else:
+            return QtGui.QColor.fromRgbF(self.myValues[0], \
+                                         self.myValues[1], \
+                                         self.myValues[2])
+
+    def getColorStyleStr(self):
+        if isinstance(self.myValues, str):
+            return self.findReference(self.myValues).getColorStyleStr()
+        elif not self.isAlpha() and \
+            (self.myValues[0] + self.myValues[1] + self.myValues[2]) < 0.75:
+            return "background-color: rgb(" + \
+                   str(int(self.myValues[0] * 255.0)) + ", " + \
+                   str(int(self.myValues[1] * 255.0)) + ", " + \
+                   str(int(self.myValues[2] * 255.0)) + "); " + \
+                   "color: white;"
+        else:
+            return "background-color: rgb(" + \
+                   str(int(self.myValues[0] * 255.0)) + ", " + \
+                   str(int(self.myValues[1] * 255.0)) + ", " + \
+                   str(int(self.myValues[2] * 255.0)) + ");"
+
+    def twoDigits(self, val):
+        if isinstance(val, float):
+            return float(int(val * 100.0)) / 100.0
+        else:
+            l = []
+            for v in val:
+                l.append(float(int(v * 100.0)) / 100.0)
+            return l
+
+    def setAlpha(self, value):
+        try:
+            self.myValues[0] = float(value)
+            for info in ColorInfo.theDialog.myInfos:
+                if (info == self or info.mySelected.isChecked()) and \
+                    info.myShown and info.isAlpha():
+                    if info != self:
+                        info.myValues = self.myName
+                    ColorInfo.theDialog.myChanged = True
+        except:
+            pass
+
+    def doneAlpha(self):
+        for info in ColorInfo.theDialog.myInfos:
+            if (info == self or info.mySelected.isChecked()) and \
+                info.myShown and info.isAlpha():
+                info.myAlphaValue.setText(info.getValueStr())
+
+    def setColor(self):
+        color = QtWidgets.QColorDialog.getColor(self.getColor())
+        if color.isValid():
+            self.myValues = list(self.twoDigits(color.getRgbF()))
+            for info in ColorInfo.theDialog.myInfos:
+                if (info == self or info.mySelected.isChecked()) and \
+                    info.myShown and not info.isAlpha():
+                    if info != self:
+                        info.myValues = self.myName
+                    info.myColorValue.setText(info.getValueStr())
+                    info.myColorValue.setStyleSheet(info.getColorStyleStr())
+                    ColorInfo.theDialog.myChanged = True
+
+    def setComment(self, comment):
+        self.myComment = comment
+
+    def findReference(self, reference):
+        return ColorInfo.theDialog.findColor(reference)
+
+class Dialog(QtWidgets.QFrame):
+    def __init__(self, parent=None):
+        super(Dialog, self).__init__(parent)
+
+        ColorInfo.theDialog = self
+
+        # Create the filter input field and add the widgets to a scrolling
+        # list in the dialog.
+        self.myFilterRow = QtWidgets.QHBoxLayout()
+        self.myFilterLabel = QtWidgets.QLabel("Filter:")
+        self.myFilter = QtWidgets.QLineEdit()
+        self.myFilter.textChanged.connect(self.doFilterUpdated)
+        self.myFilterChanged = QtWidgets.QCheckBox("Changed Values")
+        self.myFilterChanged.stateChanged.connect(self.doFilterChangedUpdated)
+        self.myFilterRow.addWidget(self.myFilterLabel)
+        self.myFilterRow.addWidget(self.myFilter)
+        self.myFilterRow.addWidget(self.myFilterChanged)
+
+        self.myScroller = QtWidgets.QScrollArea()
+        self.myScroller.setWidgetResizable(True)
+
+        self.myActionRow = QtWidgets.QHBoxLayout()
+        self.myClearSelectionButton = QtWidgets.QPushButton("Clear Selection")
+        self.myClearSelectionButton.clicked.connect(self.doClearSelection)
+        self.mySchemeMenu = QtWidgets.QComboBox()
+        self.mySchemeMenu.setEditable(False)
+        self.mySchemeMenu.addItem("Light", "config/UIDark.hcs")
+        self.mySchemeMenu.addItem("Dark", "config/3DSceneColors.dark")
+        self.mySchemeMenu.addItem("Grey", "config/3DSceneColors.bw")
+        self.mySchemeMenu.currentIndexChanged.connect(self.doSchemeChanged)
+        self.mySaveButton = QtWidgets.QPushButton("Save")
+        self.mySaveButton.clicked.connect(self.doSave)
+        self.myQuitButton = QtWidgets.QPushButton("Revert")
+        self.myQuitButton.clicked.connect(self.doLoad)
+        self.myActionRow.addWidget(self.myClearSelectionButton)
+        self.myActionRow.addStretch(1)
+        self.myActionRow.addWidget(QtWidgets.QLabel("Color Scheme:"))
+        self.myActionRow.addWidget(self.mySchemeMenu)
+        self.myActionRow.addStretch(1)
+        self.myActionRow.addWidget(self.mySaveButton)
+        self.myActionRow.addWidget(self.myQuitButton)
+
+        # Create the initial dialog layout.
+        mainLayout = QtWidgets.QBoxLayout(QtWidgets.QBoxLayout.Direction.TopToBottom)
+        mainLayout.addLayout(self.myFilterRow)
+        mainLayout.addWidget(self.myScroller)
+        mainLayout.addLayout(self.myActionRow)
+        self.setLayout(mainLayout)
+
+        self.doLoad()
+
+    def findColor(self, name):
+        for info in self.myInfos:
+            if info.myName == name:
+                return info
+        return ColorInfo(name, [0.0, 0.0, 0.0], "")
+
+    def doFilterUpdated(self, state):
+        self.fillColorList(self.myFilter.text(), \
+                           self.myFilterChanged.isChecked())
+
+    def doFilterChangedUpdated(self, state):
+        self.fillColorList(self.myFilter.text(), \
+                           self.myFilterChanged.isChecked())
+
+    def fillColorList(self, filterStr = None, changedOnly = False):
+        # Sort widgets into shown or hidden containers. The hidden container
+        # exists to make sure the underlying QT widgets don't get deleted.
+        hiddenWidget = QtWidgets.QWidget()
+        hidden = QtWidgets.QGridLayout()
+        shownWidget = QtWidgets.QWidget()
+        shown = QtWidgets.QGridLayout()
+        shown.setColumnStretch(4, 1)
+        shown.setColumnMinimumWidth(4, 250)
+        i = 0
+        for info in self.myInfos:
+            info.myShown = self.matchFilter(filterStr, changedOnly, info)
+            if not info.myShown:
+                info.mySelected.setChecked(False)
+            layout = shown if info.myShown else hidden
+            layout.addWidget(info.mySelected, i, 0)
+            layout.addWidget(info.myNameLabel, i, 1)
+            if info.isAlpha():
+                layout.addWidget(info.myAlphaValue, i, 2)
+                layout.addWidget(info.myOrigAlphaValue, i, 3)
+            else:
+                layout.addWidget(info.myColorValue, i, 2)
+                layout.addWidget(info.myOrigColorValue, i, 3)
+            layout.addWidget(info.myCommentText, i, 4)
+            i = i + 1
+        shownWidget.setLayout(shown)
+        hiddenWidget.setLayout(hidden)
+        self.myScroller.setWidget(shownWidget)
+        self.myHidden = hiddenWidget
+        self.myContainer = shownWidget;
+
+    def matchFilter(self, filterStr, changedOnly, info):
+        # First thing to chec is if he value is changed
+        if changedOnly and info.myValues == info.myOrigValues:
+            return False
+
+        # Empty string matches anything
+        if filterStr is None or filterStr == "":
+            return True
+
+        # With a string, look for each word individually.
+        words = filterStr.split()
+        for word in words:
+            if info.myName.lower().find(word.lower()) != -1 or \
+               info.myComment.lower().find(word.lower()) != -1:
+                return True
+
+        return False
+
+    def doSchemeChanged(self, menu_index):
+        if self.myChanged:
+            if hou.displayMessage("You have unsaved changes.",
+                                  button = ("Save", "Discard")) == 0:
+                self.doSave()
+        self.doLoad()
+
+    def doClearSelection(self):
+        for info in self.myInfos:
+            info.mySelected.setChecked(False)
+
+    def doSave(self):
+        colorFilePath = hou.findFile(self.mySchemeMenu.itemData(self.mySchemeMenu.currentIndex()))
+        try:
+            colorFile = open(colorFilePath, "w")
+        except IOError:
+            colorFilePath = hou.homeHoudiniDirectory() + "/" + \
+                            self.mySchemeMenu.itemData(self.mySchemeMenu.currentIndex())
+            try:
+                os.mkdir(colorFilePath[0:colorFilePath.rfind("/")])
+            except OSError:
+                pass
+            colorFile = open(colorFilePath, "w")
+
+        for info in self.myInfos:
+            colorFile.write(str(info))
+            colorFile.write("\n")
+        colorFile.close()
+        hou.ui.reloadViewportColorSchemes()
+        self.myChanged = False
+
+    def doLoad(self):
+        # Read the scene colors file.
+        colorFilePath = hou.findFile(self.mySchemeMenu.itemData(self.mySchemeMenu.currentIndex()))
+        colorFile = open(colorFilePath)
+        colorLines = colorFile.readlines()
+        # Strip out empty lines and leading and trailing spaces.
+        for i in reversed(range(0, len(colorLines))):
+            colorLines[i] = colorLines[i].strip()
+            if len(colorLines[i]) == 0:
+                colorLines.pop(i)
+        # Put the lines in alphabetical order by color name.
+        colorLines.sort()
+        # Convert the lines into a list of ColorInfo structures.
+        self.myInfos = []
+        for i in range(0, len(colorLines)):
+            (rest, comment) = colorLines[i].split("#", 1)
+            if len(rest) > 0:
+                comment = comment.strip()
+                (name, value) = rest.split(":", 1)
+                name = name.strip()
+                value = value.strip()
+                if value.startswith("ALPHA"):
+                    values = [float(value.split()[1])]
+                elif value.startswith("@"):
+                    values = value[1:len(value)]
+                else:
+                    values = value.split()
+                    values = [float(values[0]), float(values[1]), float(values[2])]
+                self.myInfos.append(ColorInfo(name, values, comment))
+
+        # Build Qt widgets for displaying and editing the color information.
+        frameStyle = QtWidgets.QFrame.Sunken | QtWidgets.QFrame.Panel
+        for info in self.myInfos:
+            info.mySelected = QtWidgets.QCheckBox()
+            info.myNameLabel = QtWidgets.QLabel()
+            info.myNameLabel.setText(info.myName)
+            info.myNameLabel.setFrameStyle(frameStyle)
+            if info.isAlpha():
+                info.myAlphaValue = QtWidgets.QLineEdit()
+                info.myAlphaValue.setText(info.getValueStr())
+                info.myAlphaValue.textEdited.connect(info.setAlpha)
+                info.myAlphaValue.editingFinished.connect(info.doneAlpha)
+                info.myOrigAlphaValue = QtWidgets.QLabel()
+                info.myOrigAlphaValue.setText(info.getValueStr())
+            else:
+                info.myColorValue = QtWidgets.QPushButton(info.getValueStr())
+                info.myColorValue.setStyleSheet(info.getColorStyleStr())
+                info.myColorValue.clicked.connect(info.setColor)
+                info.myOrigColorValue = QtWidgets.QLabel()
+                info.myOrigColorValue.setStyleSheet(info.getColorStyleStr())
+                info.myOrigColorValue.setAlignment(QtCore.Qt.AlignCenter)
+                info.myOrigColorValue.setText(info.getValueStr())
+            info.myCommentText = QtWidgets.QLineEdit()
+            info.myCommentText.setText(info.myComment)
+            info.myCommentText.textChanged.connect(info.setComment)
+        self.fillColorList()
+        self.myChanged = False
+
+def onCreateInterface():
+    # Create the dialog to display and edit the color information.
+    root = Dialog()
+    return root
+]]></script>
+    <help><![CDATA[]]></help>
+  </interface>
+  <interface name="minimalmenubar" label="Minimal Menu Bar" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[from PySide2 import QtCore, QtWidgets, QtGui
+
+class MinimalMenuBar(QtWidgets.QWidget):
+    def __init__(self, *args, **kwargs):
+        super(MinimalMenuBar, self).__init__(*args, **kwargs)
+        c = QtWidgets.QVBoxLayout(self)
+        b = hou.qt.MenuBar(self)
+        file = b.addMenu("File")
+        file.addAction("New")
+        file.addAction("New")
+        file.addAction("New")
+        file = b.addMenu("Edit")
+        file.addAction("New")
+        file = b.addMenu("Render")
+        file.addAction("New")
+        file = b.addMenu("Operators")
+        file.addAction("New")
+        file = b.addMenu("Windows")
+        file.addAction("New")
+        self.layout().setMenuBar(b)
+        self.setParent(hou.ui.mainQtWindow(), QtCore.Qt.Tool)
+
+def onCreateInterface():
+    widget = MinimalMenuBar()
+    return widget]]></script>
+    <includeInToolbarMenu menu_position="106" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+  <interface name="codeeditor" label="Code Editor" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[import os, sys, json
+from utility_generic import *
+from PySide2 import QtGui, QtCore, QtWidgets, QtWebEngineWidgets, QtWebChannel
+
+
+CURRENT_DIR = "C:/Users/VFX/Documents/houdini18.0/python_panels/"
+
+
+class BaseBridge(QtCore.QObject):
+    initialized = QtCore.Signal()
+    sendDataChanged = QtCore.Signal(str, str)
+
+    def send_to_js(self, name, value):
+        data = json.dumps(value)
+        self.sendDataChanged.emit(name, data)
+
+    @QtCore.Slot(str, str)
+    def receive_from_js(self, name, value):
+        data = json.loads(value)
+        self.setProperty(name, data)
+
+    @QtCore.Slot()
+    def init(self):
+        self.initialized.emit()
+
+
+class EditorBridge(BaseBridge):
+    valueChanged = QtCore.Signal()
+    languageChanged = QtCore.Signal()
+    themeChanged = QtCore.Signal()
+
+    def __init__(self, parent=None):
+        super(EditorBridge, self).__init__(parent)
+        self._value = ""
+        self._language = ""
+        self._theme = ""
+
+    def getValue(self):
+        return self._value
+
+    def setValue(self, value):
+        self._value = value
+        self.valueChanged.emit()
+
+    def getLanguage(self):
+        return self._language
+
+    def setLanguage(self, language):
+        self._language = language
+        self.languageChanged.emit()
+
+    def getTheme(self):
+        return self._theme
+
+    def setTheme(self, theme):
+        self._theme = theme
+        self.themeChanged.emit()
+
+    value = QtCore.Property(str, fget=getValue, fset=setValue, notify=valueChanged)
+    language = QtCore.Property(
+        str, fget=getLanguage, fset=setLanguage, notify=languageChanged
+    )
+    theme = QtCore.Property(str, fget=getTheme, fset=setTheme, notify=themeChanged)
+
+
+class CodeEditor(QtWidgets.QWidget):
+    def __init__(self, parent=None):
+        super(CodeEditor, self).__init__(parent)
+
+        self._view = QtWebEngineWidgets.QWebEngineView()
+
+        channel = QtWebChannel.QWebChannel(self)
+        self.view.page().setWebChannel(channel)
+        
+        self._bridge = EditorBridge()
+        channel.registerObject("bridge", self.bridge)
+
+        lay = QtWidgets.QVBoxLayout(self)
+        
+        lay.setMargin(0)
+        lay.setSpacing(0)
+        lay.addWidget(self.view)
+        
+        button = QtWidgets.QPushButton("Timoti")
+        #lay.addWidget(button)
+        button.clicked.connect(self.changeCode)
+        
+        
+        file = "C:\Users\VFX\Documents\houdini18.0\python_panels/index.html"
+        self.view.load(QtCore.QUrl.fromLocalFile(file))
+
+        self.bridge.initialized.connect(self.handle_initialized)
+        self.bridge.valueChanged.connect(self.handle_valueChanged)
+        self.bridge.languageChanged.connect(self.handle_languageChanged)
+        self.bridge.themeChanged.connect(self.handle_themeChanged)
+        
+        
+    def changeCode(self):
+        self.bridge.send_to_js("value", "deyyuz")
+        
+
+    @property
+    def view(self):
+        return self._view
+
+    @property
+    def bridge(self):
+        return self._bridge
+
+    def handle_initialized(self):
+        print("init")
+        code = "\n".join(["function x() {", '\tconsole.log("Hello world!");', "}"])
+        # not use self.bridge.value = code
+        self.bridge.send_to_js("value", code)
+        self.bridge.send_to_js("language", "cpp")
+        self.bridge.send_to_js("theme", "vs-dark")
+
+    def setValue(self, value):
+        self.bridge.send_to_js("value", value)
+        
+    def setLanguage(self, value):
+        self.bridge.send_to_js("language", value)
+        
+    def handle_valueChanged(self):
+        hou.session.animatrix_codeeditor.setCurrentTabChanged()
+        #print("value:", self.bridge.value)
+
+    def handle_languageChanged(self):
+        print("language:", self.bridge.language)
+
+    def handle_themeChanged(self):
+        print("theme", self.bridge.theme)
+
+        
+        
+class CodeTab:
+    def __init__(self):
+        self.path = ""
+        self.isNode = False
+        self.isChanged = False
+        self.nodepath = ""
+        self.filepath = ""
+        
+        
+        
+    def fromNode(self, nodepath):
+        self.nodepath = nodepath
+        
+        
+        
+    def fromFile(self, filepath):
+        self.filepath = filepath
+        
+        
+        
+    def isNode(self, nodepath):
+        return self.isNode
+        
+        
+        
+    def setChanged(self, state):
+        self.isChanged = state
+        
+           
+        
+class TabBarStyle(QtWidgets.QProxyStyle):
+    def drawControl(self, element, option, painter, widget=None):
+        index = -1
+        if element == QtWidgets.QStyle.CE_TabBarTab:
+            if isinstance(widget, TabBar):
+                for i in widget.fonts.keys():
+                    if widget.tabRect(i) == option.rect:
+                        index = i
+                        break
+            if index > -1:
+                painter.save()
+                painter.setFont(widget.fonts[index])
+        super(TabBarStyle, self).drawControl(element, option, painter, widget)
+        if index > -1:
+            painter.restore()
+
+            
+
+class TabBar(QtWidgets.QTabBar):
+    def __init__(self, parent=None):
+        super(TabBar, self).__init__(parent)
+        self._fonts = dict()
+
+    @property
+    def fonts(self):
+        return self._fonts
+        
+        
+
+class AdvancedCodeEditor(QtWidgets.QWidget):
+    def __init__(self, parent=None):
+        super(AdvancedCodeEditor, self).__init__(parent)
+        
+        self.icons = []
+        self.icons.append(getQtIcon("Sop/python", size=16))
+        self.icons.append(getQtIcon("Sop/vopnet", size=16))
+        self.icons.append(getQtIcon("Sop/vopnet", size=16))
+        self.icons.append(getQtIcon("Sop/vopnet", size=16))
+        self.icons.append(getQtIcon("Sop/vopnet", size=16))
+        
+        
+        if not hasattr(hou.session, "animatrix_activecodetabs"):
+            hou.session.animatrix_activecodetabs = []
+        
+        
+        self.Tabs = QtWidgets.QTabWidget()
+        bgcolor = self.Tabs.palette().color(QtGui.QPalette.Background)
+        self.Tabs.setStyleSheet("QTabWidget::pane { margin: 0px 0px 0px 0px; padding: 0px; border: 1px solid black; } QTabBar::tab { margin: 0px 0px 0px 0px; padding: 0px; border: 1px solid black; } QTabBar::tab:selected { background-color: #349117; }")
+        
+                
+        self.editor = CodeEditor()
+        self.editor.view.page().setBackgroundColor(bgcolor)
+        
+        lay = QtWidgets.QVBoxLayout(self)
+        lay.setMargin(0)
+        lay.setSpacing(0)
+        lay.addWidget(self.Tabs)
+        
+        file = "C:\Users\VFX\Documents\houdini18.0\python_panels/neweditor.html"
+        self.Tabs.addTab(self.editor, self.icons[0], "svd_decomposition")
+        
+        hou.session.animatrix_codeeditor = self
+        
+        
+        
+    def addTabFromNode(self, node, icon, code, language):
+        codetab = CodeTab()
+        codetab.fromNode(node.path())
+        hou.session.animatrix_activecodetabs.append(codetab)
+        
+        self.Tabs.addTab(self.editor, icon, node.name())
+        self.editor.setValue(code)
+        self.editor.setLanguage(language)
+        
+        
+        
+    def setCurrentTabChanged(self):
+        #hou.session.animatrix_activecodetabs[self.Tabs.currentIndex()].setChanged(True)
+        print self.Tabs.currentIndex()
+        #print hou.session.animatrix_activecodetabs
+        #print hou.session.animatrix_activecodetabs[self.Tabs.currentIndex()].isChanged
+        
+        #self.Tabs.widget(self.Tabs.currentIndex()).setStyleSheet("QTabWidget::pane { margin: 0px 0px 0px 0px; padding: 0px; border: 1px solid black; } QTabBar::tab { font:bold; margin: 0px 0px 0px 0px; padding: 0px; border: 1px solid black; } QTabBar::tab:selected { background-color: #349117; }")
+        
+        
+        
+        
+    def getMultilineParm(self, selectedNode):
+        validNodes = ["Sop/python", "Sop/attribwrangle"]
+        multilineParm = ["python", "snippet"]
+        languages = ["python", "cpp", "opencl", "hscript", "cpp"]
+        
+        nodetype = selectedNode.type().nameWithCategory()
+        indices = [i for i, n in enumerate(validNodes) if n == nodetype]
+        if indices:
+            language = languages[indices[0]]
+            icon = self.icons[indices[0]]
+            return selectedNode.evalParm(multilineParm[indices[0]]), language, icon
+        
+        return None, None, None
+        
+        
+        
+    def syncSelection(self, selectedNode):
+        if hasattr(hou.session, "animatrix_activecodetabs"):
+            for index, codetab in reversed(list(enumerate(hou.session.animatrix_activecodetabs))):
+                if not codetab.isChanged:
+                    self.Tabs.removeTab(index)
+                
+            code, language, icon = self.getMultilineParm(selectedNode)
+            if code:
+                self.addTabFromNode(selectedNode, icon, code, language)
+                
+                
+        
+    
+        
+        
+def onCreateInterface():
+    advancedcodeeditor = AdvancedCodeEditor()
+    hou.session.animatrixcodeeditor = advancedcodeeditor
+    
+    return advancedcodeeditor]]></script>
+    <includeInToolbarMenu menu_position="108" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+</pythonPanelDocument>

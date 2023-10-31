@@ -1,0 +1,5 @@
+{
+	"enable" : true,
+	"requires": [ "generic"],
+	"path" : "$HOUDINI_USER_PREF_DIR/animatrix/hotkey system"
+}

@@ -1,0 +1,187 @@
+h.pane.wsheet.opmenu.extended_info	"Extended Information"	"View extended information for the selected node"	 ,
+h.pane.gview.state.sop.rbdbulletsolverh3	"view proxy"	"view proxy"	 3
+h.pane.wsheet.expose	"Expose All"	"Expose all hidden operators"	
+h.audio_panel	"Audio Panel"	"Open audio panel"	
+h.tool:fullscreenSession	"Fullscreen Session"	"Shelf Tool: Fullscreen Session"	 Ctrl+`
+h.pane.wsheet.toggle_drop_on_wire	"Enable/Disable Drop-on-Wire"	"Enable/disable drop-on-wire"	 Ctrl+E Shift+E
+h.pane.wsheet.tool:currentViewportSwitchToTop	"Current Viewport Switch To Top"	"Shelf Tool: Current Viewport Switch To Top"	 @
+h.pane.gview.handle.xform.click_orient	"Start Orientation Picking"	"Start clicking to orient handle"	 : Ctrl+; Ctrl+:
+h.pane.wsheet.jump_mark_5	"Jump to Quickmark 5"	"Jumps to the quickmark 5 view"	 Alt+Pad5
+h.pane.gview.state.sop.rbdbulletsolverh4	"toggle view"	"toggle view"	 4
+h.tool:jumpUpOneLevel	"Jump Up One Level"	"Shelf Tool: Jump Up One Level"	 \\
+h.pane.gview.state.view.load_quick4	"Load Quickview 4"	"Sets the current view to quickview 4"	
+h.pane.wsheet.jump_mark_undo	"Jump to Previous View"	"Jumps to the previous view"	
+h.pane.wsheet.opmenu.unsynchronize	"Allow Editing of Contents"	"Unsynchronize the selected node with its type definition"	 Ctrl+/ /
+h.pane.gview.model.seltypegroups	"Select Groups"	"Select geometry groups"	
+h.pane.parms.copy_parm	"Copy Parameter"	"Copy parameter"	 F5
+h.pane.wsheet.snap_netbox_bounds	"Snap Borders To Bounds"	"Snaps a network box's borders to its minimum bounding box"	
+h.pane.wsheet.prev_wi	"Previous Work Item"	"Selects the previous visible work item."	
+h.pane.wsheet.tool:currentViewportSwitchToUV	"Current Viewport Switch To UV"	"Shelf Tool: Current Viewport Switch To UV"	 %
+h.pane.gview.state.view.load_quick3	"Load Quickview 3"	"Sets the current view to quickview 3"	
+h.pane.wsheet.cut_wires_mode	"Cut Wires Mode"	"Hold this key to enter cut wires mode"	 Pause
+h.pane.wsheet.opmenu.create_hda	"Create Digital Asset"	"Create a new digital asset from the selected node"	 Ctrl+Shift+C
+h.pane.gview.state.sop.rbdbulletsolverh2	"view constraints"	"view constraints"	 2
+h.pane.wsheet.flag3_mode	"Set Third Flag"	"Hold this key and select a node to toggle a third flag value"	
+h.pane.wsheet.frame	"Frame All"	"Frame all OP tiles"	 Alt+F Ctrl+Shift+F
+h.pane.wsheet.layout	"Layout Selected"	"Layout selected OP tiles"	
+h.pane.wsheet.tool:currentViewportSwitchToFront	"Current Viewport Switch To Front"	"Shelf Tool: Current Viewport Switch To Front"	 #
+h.pane.wsheet.addfileop	"Add File Operator"	"Adds a new File OP"	
+h.tool:pasteRandomNumber	"Paste Random Number"	"Shelf Tool: Paste Random Number"	 Ctrl+Shift+V
+h.pane.wsheet.tool:currentViewportSetToSmoothShaded	"Current Viewport Toggle Set To Smooth Shaded"	"Shelf Tool: Current Viewport Toggle Set To Smooth Shaded"	 Alt+R
+h.pane.wsheet.tool:currentViewportSwitchToRight	"Current Viewport Switch To Right"	"Shelf Tool: Current Viewport Switch To Right"	 $
+h.pane.wsheet.tool:toggleNetworkEditorGrid	toggleNetworkEditorGrid	"Shelf Tool: toggleNetworkEditorGrid"	 Ctrl+Shift+G
+h.tool:timoti	timoti	"Shelf Tool: timoti"	 Ctrl+?
+h.tool:toggleSceneRenderView	"Toggle Scene Render View"	"Shelf Tool: Toggle Scene Render View"	 8
+h.pane.gview.state.floor.load_quick1	"Load Quickplane 1"	"Sets the current construction plane to quickplane 1"	
+HCONTEXT	h.pane.gview.state.sop.sidefx_muscleflex	"sidefx_muscleflex Operation"	"These keys apply to the sidefx_muscleflex operation."
+h.pane.gview.state.sop.sidefx_muscleflex.set_keys	"Key All Muscle Tension Channels"	"Key All Muscle Tension"	 Ctrl+K
+h.pane.gview.tool:togglePointMarkers	"Toggle Point Markers"	"Shelf Tool: Toggle Point Markers"	 F8
+h.pane.gview.toggle_wireover	"Toggle Shaded/Wire-over-shaded"	"Toggle shaded/Wire-over-shaded"	
+h.pane.parms.revert_defs	"Revert To Defaults"	"Revert to defaults"	 F9
+h.pane.wsheet.open_display_options	"Open Display Options"	"Opens the worksheet display options dialog"	 Ctrl+D
+h.pane.wsheet.allowdroponwire	"Allow Dropping Nodes on Wires"	"Toggle the ability to drop a node onto an existing wire"	
+h.pane.gview.state.sop.rbdbulletsolverh1	"view geo"	"view geo"	 1
+h.pane.gview.state.view.frame_cplane	"Frame C-Plane"	"Frame construction plane"	
+h.pane.wsheet.visualize_mode	"Visualize Output"	"Hold this key and select a node or output connector to visualize the output"	
+h.pane.linkeditor.sheet.volatile_select	"Volatile Select"	"Volatile select"	
+h.pane.wsheet.next_wi	"Next Work Item"	"Selects the next visible work item."	
+h.pane.wsheet.home_selected	"Home Selected"	"Home selected OP tiles"	
+h.pane.wsheet.up	"Set Current Above"	"Set current above"	
+h.pane.gview.bottom	"Move To Last Operation"	"Move to last operation"	
+h.pane.jump_forth	"Jump Forward"	"Jump forward one step"	 \\'
+h.pane.gview.handle.floor.click_orient	"Start Orientation Picking"	"Start clicking to orient construction plane"	 : Ctrl+; Ctrl+:
+h.pane.gview.world.selexpandconstraints	"Select Constraints"	"Select object constraints"	
+h.pane.gview.state.view.load_quick1	"Load Quickview 1"	"Sets the current view to quickview 1"	
+h.tool:toggleNetworkEditor	"Toggle Network Editor"	"Shelf Tool: Toggle Network Editor"	 6
+h.pane.wsheet.flag4_mode	"Set Fourth Flag"	"Hold this key and select a node to toggle a fourth flag value"	
+h.pane.gview.selectmode	"Toggle Object/Geometry Mode"	"Toggle the selection mode between object and geometry"	
+h.pane.gview.state.view.home_all	"Home All"	"Home all"	 Shift+G
+h.pane.wsheet.home	"Home All"	"Home all OP tiles"	 Shift+H
+h.pane.wsheet.left	"Set Current Left"	"Set Current left"	
+h.pane.chedit.toggle_list	"Toggle Channel List"	"Toggle channel list"	 Tab
+h.pane.wsheet.right	"Set Current Right"	"Set Current right"	
+h.pane.gview.state.view.home_selection	"Home Selected"	"Home selected"	 Shift+F
+h.pane.gview.tool:togglePointNumbers	"Toggle Point Numbers"	"Shelf Tool: Toggle Point Numbers"	 F9
+h.pane.gview.tool:togglePrimitiveNumbers	"Toggle Primitive Numbers"	"Shelf Tool: Toggle Primitive Numbers"	 F10
+h.pane.wsheet.updir	"Jump Up"	"Jump up to parent network"	
+h.tool:setOpacityTo75	"Set Opacity To 75%"	"Shelf Tool: Set Opacity To 75%"	 Ctrl+F3
+h.pane.gview.selmode.dynamics	"Dynamics Select Mode"	"Dynamics selection mode"	
+h.pane.gview.state.floor.load_quickprev	"Load Previous Quickplane"	"Sets the current construction plane to the previous quickplane"	
+h.pane.wsheet.set_mark_2	"Set Quickmark 2"	"Saves the current view as quickmark 2"	 Ctrl+Pad2
+h.pane.wsheet.doautomovenodes	"Make Room for New Nodes"	"Toggle the movement of nodes to make room for new nodes"	
+h.pane.wsheet.down	"Set Current Below"	"Set current below"	
+h.pane.wsheet.shape_palette	"Shape Palette"	"Open shape palette"	
+h.pane.to_scene_view	"Scene View"	"Switch to scene view"	
+h.pane.wsheet.opmenu.flag_debug	"Toggle Debug Mode"	"Toggle Debug Mode"	
+h.pane.parms.parm_half	"Halve Value"	"Custom Menu Operation: Halve Value"	 -
+h.pane.to_cop_view	"Composite View"	"Switch to composite view"	
+h.pane.gview.left	"Move To Left Sibling"	"Move to left sibling operation"	
+h.pane.wsheet.cook_selected_node	"Cook Selected Node"	"Cook the selected node's work items."	
+h.pane.wsheet.overview	"Net Overview"	"Open network overview"	 Ctrl+Shift+D
+h.pane.to_chanedit	"Animation Editor"	"Switch to animation editor"	
+h.tool:togglePerfMon	"Toggle Performance Monitor"	"Shelf Tool: Toggle Performance Monitor"	 0
+h.pane.wsheet.view_mode	"View Mode"	"Hold this key to enter view mode"	
+h.pane.wsheet.tool:currentViewportToggleWireframe	"Current Viewport Toggle Wireframe"	"Shelf Tool: Current Viewport Toggle Wireframe"	 Alt+W
+h.pane.wsheet.tool:currentViewportSetToSmoothWireShaded	"Current Viewport Toggle Set To Smooth Wire Shaded"	"Shelf Tool: Current Viewport Toggle Set To Smooth Wire Shaded"	 Alt+E
+h.pane.wsheet.tool:pushOutNodes	"Push Out Nodes"	"Shelf Tool: Push Out Nodes"	 Ctrl+Shift+B
+h.pane.imgui.view2d.hwipe	"Horizontal Wipe"	"Diff: Horizontal Wipe"	
+h.pane.wsheet.fastfind	"Find Operator"	"This Find Operator only works in the network pane"	 Ctrl+F
+h.pane.gview.state.floor.load_quick4	"Load Quickplane 4"	"Sets the current construction plane to quickplane 4"	
+h.pane.imgui.view2d.compall	"All Components"	"All components"	
+h.pane.gview.state.sop.rbdbulletsolverh5	"toggle inspector"	"toggle inspector"	 5
+h.pane.parms.parm_double	"Halve Value"	"Custom Menu Operation: Halve Value"	 =
+h.pane.wsheet.tool:currentViewportSetToFlatWireShaded	"Current Viewport Toggle Set To Flat Wire Shaded"	"Shelf Tool: Current Viewport Toggle Set To Flat Wire Shaded"	 Alt+Q
+h.pane.gview.state.floor.load_quick2	"Load Quickplane 2"	"Sets the current construction plane to quickplane 2"	
+h.tool:toggleOverlayNetworkEditor	"Toggle Overlay Network Editor"	"Shelf Tool: Toggle Overlay Network Editor"	 ` Ctrl+Pad0
+h.pane.wsheet.find_prev	"Find Previous Match"	"Jumps to the previous match from the find window"	 <
+h.pane.wsheet.find	"Find Node"	"Opens a window to find a node in the current network"	
+h.pane.wsheet.set_mark_1	"Set Quickmark 1"	"Saves the current view as quickmark 1"	 Ctrl+Pad1
+h.pane.wsheet.tool:currentViewportFrameAll	"Current Viewport Frame All"	"Shelf Tool: Current Viewport Frame All"	 Shift+G
+h.tool:resetNetworkLevelZoom	"Reset Network Level Zoom"	"Shelf Tool: Reset Network Level Zoom"	 Ctrl+F10
+h.pane.wsheet.flag2_mode	"Set Secondary Flag"	"Hold this key and select a node to toggle the secondary flag value"	
+h.pane.gview.tool:togglePrimitiveNormals	"Toggle Primitive Normals"	"Shelf Tool: Toggle Primitive Normals"	 F12
+h.pane.parms.paste_exprs	"Paste Copied Expressions"	"Paste copied expressions"	 F7
+h.pane.imgui.hist.compall	"All Components"	"All components"	
+h.pane.wsheet.flag1_mode	"Set Primary Flag"	"Hold this key and select a node to toggle the primary flag value"	
+h.pane.wsheet.drop_on_wire_mode	"Allow Dropping Nodes on Wires Mode"	"Hold this key to temporarily toggle the ability to drop nodes on wires"	 Space
+h.pane.wsheet.open_groups	"Open Group List"	"Open OP group list"	
+h.tool:toggleUpdateMode	"Toggle Update Mode"	"Shelf Tool: Toggle Update Mode"	 Pad0
+h.pane.parms.paste_vals	"Paste Copied Values"	"Paste copied values"	 F8
+h.pane.gview.tool:togglePointNormals	"Toggle Point Normals"	"Shelf Tool: Toggle Point Normals"	 F11
+h.tool:toggleDetailsView	"Toggle Details View"	"Shelf Tool: Toggle Details View"	 7
+h.pane.gview.state.view.load_quick2	"Load Quickview 2"	"Sets the current view to quickview 2"	
+h.pane.wsheet.dirty_cook_selected_node	"Dirty and Cook Selected Node"	"Regenerate all work items and cook them for the selected node."	
+h.pane.textport.top	Home	Home	
+h.pane.wsheet.tool:selectableTemplateSelectedNodes	"Selectable Template Selected Nodes"	"Shelf Tool: Selectable Template Selected Nodes"	 Alt+4
+h.tool:setOpacityTo50	"Set Opacity To 50%"	"Shelf Tool: Set Opacity To 50%"	 Ctrl+F2
+h.pane.gview.handle.xform.handle_geometry_detachment	"Toggle Handle-Geometry Detachment"	"Toggle handle-geometry detachment"	
+h.pane.wsheet.layout_all	"Layout All"	"Layout all OP tiles"	 Shift+L
+h.pane.textport.bottom	End	End	
+deskmgr.accept	Accept	"Accept current changes"	 Ctrl+`
+h.pane.gview.redoselection	"Restart Selecting"	"Restart selecting"	 Alt+`
+h.pane.gview.secureselection	"Secure Selection"	"Secure selection"	
+h.tool:showRecentlyOpenedFiles	"Show Recently Opened Files"	"Shelf Tool: Show Recently Opened Files"	 Ctrl+F12
+h.pane.gview.state.view.load_quickprev	"Load Previous Quickview"	"Sets the current view to the previous quickview"	
+h.pane.wsheet.set_mark_4	"Set Quickmark 4"	"Saves the current view as quickmark 4"	 Ctrl+Pad4
+h.pane.wsheet.set_mark_3	"Set Quickmark 3"	"Saves the current view as quickmark 3"	 Ctrl+Pad3
+h.pane.wsheet.tool:currentViewportFrameSelected	"Current Viewport Frame Selected"	"Shelf Tool: Current Viewport Frame Selected"	 Shift+F
+h.pane.wsheet.scope_chans	"Scope Channels"	"Scope channels"	
+h.pane.gview.restore_prevcam	"Restore Previous Camera"	"Look through the previous camera"	
+h.pane.wsheet.jump	"Jump Down"	"Jump down to child network"	 Enter
+h.pane.gview.state.floor.load_quick3	"Load Quickplane 3"	"Sets the current construction plane to quickplane 3"	
+h.pane.wsheet.jump_mark_4	"Jump to Quickmark 4"	"Jumps to the quickmark 4 view"	 Alt+Pad4
+h.pane.gview.world.selexpandchild	"Select Child Objects"	"Select child objects"	
+h.pane.wsheet.select_mode	"Select Mode"	"Hold this key to enter select mode"	
+h.pane.wsheet.opmenu.properties	"Type Properties"	"Edit the operator type properties"	 Ctrl+F9
+h.pane.to_treeview	"Tree View"	"Switch to tree viewer"	
+h.tool:toggleParameterEditorMaterialPalette	"Toggle Parameter Editor Material Palette"	"Shelf Tool: Toggle Parameter Editor Material Palette"	 9
+h.pane.to_geosheet	"Geometry Spreadsheet"	"Switch to geometry spreadsheet"	
+h.pane.to_net	"Network Editor"	"Switch to network editor"	
+h.pane.to_mat_palette	"Material Palette"	"Switch to material palette"	
+h.pane.wsheet.layout_mode	"Layout Mode"	"Hold this key and swipe nodes with the mouse to layout or align"	 Shift+A Alt+A Alt+Shift+A
+h.pane.wsheet.opmenu.flag_template	"Toggle Template"	"Toggle the Template flag of the selected node"	 Alt+3
+h.pane.playbar	"Move Playbar Here"	"Move playbar to this pane"	
+h.find	"Find Operator"	"Find operator"	 Ctrl+F
+h.pane.chedit.graph.zeroslope	"Set Selected Slopes To Zero"	"Set selected slopes to zero"	 0
+h.pane.wsheet.jump_mark_1	"Jump to Quickmark 1"	"Jumps to the quickmark 1 view"	 Alt+Pad1
+h.pane.wsheet.jump_mark_2	"Jump to Quickmark 2"	"Jumps to the quickmark 2 view"	 Alt+Pad2
+h.pane.wsheet.opmenu.flag_bypass	"Toggle Bypass"	"Toggle the Bypass flag of the selected node"	 Shift+B Alt+5
+h.pane.gview.state.view.frame_all	"Frame All"	"Frame all"	 G
+h.pane.wsheet.opmenu.flag_display	"Toggle Display"	"Toggle the Display flag of the selected node"	 Alt+2
+h.pane.jump_back	"Jump Back"	"Jump back one step"	 Backspace ;
+h.pane.wsheet.add_image	"Add Background Image"	"Adds a new background image"	
+h.add_key	"Add Keyframe"	"Add a keyframe"	
+h.pane.wsheet.set_mark_5	"Set Quickmark 5"	"Saves the current view as quickmark 5"	 Ctrl+Pad5
+h.pane.wsheet.tool:currentViewportEnterViewState	"Current Viewport Enter View State"	"Shelf Tool: Current Viewport Enter View State"	 Shift+Esc
+h.pane.gview.operator_menu	"Toolbar Menu"	"Pop up toolbar menu"	 Tab
+h.floatpanel	"Floating Panel"	"New floating panel"	 Alt+Shift+W Ctrl+Shift+W
+h.live_updates	"Live Parameter Display during Playback"	"Animated parameters in the parameter pane will be automatically refreshed on playback"	
+h.pane.to_ipr_viewer	"Render View"	"Switch to render view"	
+h.pane.wsheet.batch_rename	"Rename Nodes"	"Search and replace in all node names in this network"	
+h.pane.wsheet.bypass_mode	"Set Bypass Flag"	"Hold this key and select a node to toggle the bypass flag value"	
+h.tool:object_pointlight	"Point Light"	"Shelf Tool: Point Light"	 Ctrl+0
+h.tool:clearStatusBarMessage	"Clear Status Bar Message"	"Shelf Tool: Clear Status Bar Message"	 Alt+Ctrl+Shift+PadMinus Alt+Ctrl+_
+h.pane.wsheet.mode_switch	"Show List Mode"	"Switch between worksheet and list"	
+h.openotl	"Install Asset Library"	"Install an asset library"	 Alt+Ctrl+Shift+PadPlus
+h.pane.wsheet.jump_mark_3	"Jump to Quickmark 3"	"Jumps to the quickmark 3 view"	 Alt+Pad3
+h.pane.wsheet.add_op	"Add Operator"	"Add Operator"	 Tab
+h.pane.parms.paste_rel_refs	"Paste Copied Relative Refs"	"Paste copied relative refs"	 F6
+h.tool:setOpacityTo100	"Set Opacity To 100%"	"Shelf Tool: Set Opacity To 100%"	 Ctrl+F4
+h.hotkey_mgr	"Hotkey Manager"	"Open hotkey manager"	 Ctrl+.
+h.paste	Paste	Paste	 Ctrl+V
+h.cut	Cut	Cut	 Ctrl+X
+h.pane.wsheet.dirty_node	"Dirty Selected Node"	"Remove all work items for selected node."	
+h.pane.wsheet.color_palette	"Color Palette"	"Open color palette"	 Shift+D
+h.saveas_desktop	"Save As Current Desktop"	"Save as current desktop"	 Alt+Ctrl+Shift+PadStar
+h.tool:showCurrentHipFilename	"Show Current Hip Filename"	"Shelf Tool: Show Current Hip Filename"	 Ctrl+F11
+h.copy	Copy	Copy	 Ctrl+C
+h.pane.wsheet.tool:currentViewportSwitchToPerspective	"Current Viewport Switch To Perspective"	"Shelf Tool: Current Viewport Switch To Perspective"	 !
+h.pane.to_textport	Textport	"Switch to textport"	
+h.pane.to_parm	Parameters	"Switch to parameter dialog"	
+h.pane.gview.state.volatile_floor	"Volatile C-Plane Operation"	"Volatile construction plane operation"		
+h.update_now	"Force Update"	"Force update"	 PadDot
+h.pane.wsheet.edit_images	"Edit Background Images"	"Toggle background image editing"	
+h.pane.wsheet.opparms	"Open Parameters"	"Open OP parameter dialog"	 Ctrl+P Alt+P
+h.quit	Quit	"Quit the appication"	 Ctrl+Q
+h.tool:setOpacityTo25	"Set Opacity To 25%"	"Shelf Tool: Set Opacity To 25%"	 Ctrl+F1
+h.pane.wsheet.rename_node	"Rename Node"	"Edit the name of the current node"	

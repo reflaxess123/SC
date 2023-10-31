@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pythonPanelDocument>
+  <!-- This file contains definitions of Python interfaces and the
+ interfaces menu.  It should not be hand-edited when it is being
+ used by the application.  Note, that two definitions of the
+ same interface or of the interfaces menu are not allowed
+ in a single file. -->
+  <interface name="hdamanager" label="HDA Manager" icon="MISC_python" showNetworkNavigationBar="false" help_url="">
+    <script><![CDATA[from PySide2 import QtCore, QtWidgets, QtGui
+from datetime import datetime
+import os, time, fnmatch, pickle
+from utility_generic import *
+from digitalasset import *
+import cProfile
+
+
+class VerticalLineDelegate(QtWidgets.QStyledItemDelegate):
+    def paint(self, painter, option, index):
+        super(VerticalLineDelegate, self).paint(painter, option, index)
+        line = QtCore.QLine(option.rect.topRight(), option.rect.bottomRight())
+        painter.save()
+        color = QtGui.QColor(50, 50, 50)
+        painter.setPen(QtGui.QPen(color, 1))
+        painter.drawLine(line)
+        painter.restore()
+        
+        
+
+class NodeTableWidget(QtWidgets.QTableWidget):
+    CurrentNodes = []
+    ActiveSync = True
+    
+    def __init__(self, parent=None):
+        super(NodeTableWidget, self).__init__(parent)
+        self.installEventFilter(self)
+        
+        #self.setItemDelegate(QtWidgets.QItemDelegate())
+        self.setColumnCount(3)
+        self.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        
+        self.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.setHorizontalHeaderLabels(("OP", "Type", "Embedded and Selected Nodes"))
+        self.setAlternatingRowColors(True)
+        self.setShowGrid(False)
+        delegate = VerticalLineDelegate(self)
+        self.setItemDelegate(delegate)
+        
+        self.setColumnWidth(0, hou.ui.scaledSize(3))
+        
+        hh = self.horizontalHeader()
+        hh.setSectionResizeMode(0, QtWidgets.QHeaderView.Fixed)
+        hh.setSectionResizeMode(1, QtWidgets.QHeaderView.Stretch)
+        hh.setSectionResizeMode(2, QtWidgets.QHeaderView.Stretch)
+        
+        hh.setFixedHeight(hou.ui.scaledSize(22))
+        hh.setHighlightSections(False)
+        
+        vh = self.verticalHeader()
+        vheaderFont = vh.font()
+        vheaderFont.setPointSizeF(7.5)
+        vh.setFont(vheaderFont)
+        vh.setHighlightSections(False)
+        
+        vh.setDefaultSectionSize(hou.ui.scaledSize(10))
+        vh.setMinimumSectionSize(hou.ui.scaledSize(20))
+        vh.setMaximumWidth(hou.ui.scaledSize(28))
+        vh.setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
+        
+        self.updateNodeList()
+
+
+
+    def navigateToCurrentNode(self):
+        index = self.currentRow()
+        currentNode = self.CurrentNodes[index]
+        if currentNode:
+            currentNode.setSelected(True, clear_all_selected=True)
+        
+        
+            
+    def getNodeLabel(self, node):
+        return "{0} | {1}".format(node.type().name(), node.name())
+        
+    
+    
+    def refreshNodes(self):
+        nsNodes, embeddedNodes = getNonStandardNodes()
+        nodes = embeddedNodes
+        selectedNodes = hou.selectedNodes()
+        for n in selectedNodes:
+            if not isStandardHDANode(n) and n not in nodes:
+                nodes.append(n)
+        
+        nodes = sorted(nodes, key=lambda n: self.getNodeLabel(n))
+        
+        nodenames = [n.name() for n in nodes]
+        nodetypes = [n.type().name() for n in nodes]
+        nodecontexts = [getOperatorContextFromNode(n) for n in nodes]
+        nodeicons = [getQtIcon(n) for n in nodes]
+        
+        return nodes, nodenames, nodecontexts, nodetypes, nodeicons
+        
+        
+        
+    def updateNodeList(self, syncSelection=True):
+        self.clearContents()
+        self.CurrentNodes, nodenames, nodecontexts, nodetypes, nodeicons = self.refreshNodes()
+        
+        rowsize = hou.ui.scaledSize(10)
+        for index, node in enumerate(nodenames):
+            self.insertRow(index)
+            self.setRowHeight(index, rowsize)
+            
+            nodename = QtWidgets.QTableWidgetItem(node)
+            nodename.setFlags(nodename.flags() & ~QtCore.Qt.ItemIsEditable)
+            nodename.setIcon(nodeicons[index])
+            
+            nodetype = QtWidgets.QTableWidgetItem(nodetypes[index])
+            nodetype.setFlags(nodetype.flags() & ~QtCore.Qt.ItemIsEditable)
+            nodetype.setTextAlignment(QtCore.Qt.AlignRight)
+            
+            nodecontext = QtWidgets.QTableWidgetItem(nodecontexts[index])
+            nodecontext.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            nodecontext.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            self.setItem(index, 1, nodetype)
+            self.setItem(index, 2, nodename)
+            self.setItem(index, 0, nodecontext)
+            
+        if syncSelection:
+            selectedNodes = hou.selectedNodes()
+            if selectedNodes:
+                self.syncSelectedNode(selectedNodes[0])
+
+
+
+    def mouseDoubleClickEvent(self, event):
+        widget = self.childAt(event.pos())
+        if widget is not None and widget.objectName():
+            self.navigateToCurrentNode()
+           
+            
+            
+    def mouseReleaseEvent(self, event):
+        widget = self.childAt(event.pos())
+        if widget is not None and widget.objectName():
+            self.navigateToCurrentNode()
+            
+          
+            
+    def highlightNode(self, targetNode):
+        found = False
+        for index, node in enumerate(self.CurrentNodes):
+            if node.path() == targetNode.path():
+                self.selectRow(index)
+                found = True
+                
+        return found
+        
+        
+        
+    def syncSelectedNode(self, selectedNode):
+        try:
+            if self.ActiveSync:
+                if not self.highlightNode(selectedNode):
+                    self.updateNodeList(syncSelection=False)
+                    self.highlightNode(selectedNode)
+        except:
+            pass
+            
+            
+            
+    def getCurrentNode(self):
+        if self.selectedItems():
+            row = self.currentRow()
+            return self.CurrentNodes[row]
+        else:
+            return None
+            
+            
+            
+class HDATableWidget(QtWidgets.QTableWidget):
+    HDAs = []
+    HDAPaths = []
+    FilteredHDAs = []
+    maxHDACount = 100
+    
+    def __init__(self, parent=None):
+        super(HDATableWidget, self).__init__(parent)
+        self.installEventFilter(self)
+        
+        self.HDAs = loadSerializedHDADatabase()
+        self.HDAPaths = [hda.path for hda in self.HDAs]
+        self.sortHDAs()
+        
+        self.setItemDelegate(QtWidgets.QItemDelegate())
+        self.setColumnCount(9)
+        self.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustToContents)
+        
+        self.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
+        self.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        self.setHorizontalHeaderLabels(("Matching HDAs","OP", "Comp", "Namespace", "Ver", "Date", "Min", "Max", "Current"))
+        self.setAlternatingRowColors(True)
+        self.setShowGrid(False)
+        delegate = VerticalLineDelegate(self)
+        self.setItemDelegate(delegate)
+        
+        self.setColumnWidth(1, hou.ui.scaledSize(3))
+        self.setColumnWidth(2, hou.ui.scaledSize(3))
+        self.setColumnWidth(3, hou.ui.scaledSize(80))
+        self.setColumnWidth(4, hou.ui.scaledSize(3))
+        self.setColumnWidth(5, hou.ui.scaledSize(80))
+        self.setColumnWidth(6, hou.ui.scaledSize(3))
+        self.setColumnWidth(7, hou.ui.scaledSize(3))
+        self.setColumnWidth(8, hou.ui.scaledSize(66))
+        
+        hh = self.horizontalHeader()
+        hh.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        
+        hh.setFixedHeight(hou.ui.scaledSize(22))
+        hh.setHighlightSections(False)
+        
+        vh = self.verticalHeader()
+        vheaderFont = vh.font()
+        vheaderFont.setPointSizeF(7.5)
+        vh.setFont(vheaderFont)
+        vh.setHighlightSections(False)
+        
+        vh.setDefaultSectionSize(hou.ui.scaledSize(10))
+        vh.setMinimumSectionSize(hou.ui.scaledSize(20))
+        vh.setMaximumWidth(hou.ui.scaledSize(28))
+        vh.setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
+        #self.HDAs = self.refreshHDAs()
+        self.updateHDAList()
+        
+        
+        
+    def getCurrentHDA(self):
+        row = self.currentRow()
+        return self.FilteredHDAs[row]
+        
+        
+        
+    def installSelectedHDA(self):
+        hda = self.getCurrentHDA()
+        hou.hda.installFile(hda.path, oplibraries_file=None, force_use_assets=True)
+        
+        
+        
+    def sortHDAs(self):
+        self.HDAs = sorted(self.HDAs, key = lambda d: d.modtime, reverse=True)
+        self.HDAs = sorted(self.HDAs, key = lambda d: d.fulltypenameWithoutVersion)
+        
+        
+        
+    def updateHDAList(self, currentNode = None, filter = None, matchName = False, matchAnyName = False, matchType = False, matchContext = False, matchNamespace = False, matchVersion = False, matchDate = False, matchMinInputs = False, matchMaxInputs = False):
+        self.setRowCount(0)
+        
+        highlightRow = False
+        highlightIndex = -1
+        currentIndex = -1
+        self.FilteredHDAs = []
+        
+        if filter:
+            filter = filter.lower()
+            
+        currentNodeHasHDADefinition = False
+        currentDA = None
+        if currentNode:
+            currentHDA = currentNode.type().definition()
+            if currentHDA:
+                currentDA = DigitalAsset(currentHDA)
+                
+                if not isEmbeddedNode(currentNode) and currentDA.path not in self.HDAPaths:
+                    self.FilteredHDAs.append(currentDA)
+                    currentNodeHasHDADefinition = True
+                  
+        if currentNode or filter:
+            for hda in self.HDAs:
+                matched = True
+                if len(self.FilteredHDAs) >= self.maxHDACount:
+                    break
+                    
+                if filter and filter not in hda.name.lower() and filter not in hda.fulltypename.lower():
+                    matched = False
+                    
+                if matched and currentDA:
+                    if matchName and hda.name != currentDA.name:
+                        matched = False
+                        
+                    if matched and matchAnyName:
+                        sourceNames = currentDA.name.split(' ')
+                        sourceNames.extend(currentDA.typename.split(' '))
+                        targetNames = hda.name.split(' ')
+                        targetNames.extend(hda.typename.split(' '))
+                        
+                        matchFound = False
+                        for sourceName in sourceNames:
+                            if matchFound:
+                                break
+                                
+                            for targetName in targetNames:
+                                if sourceName in targetName:
+                                    matchFound = True
+                                    break
+                                    
+                        matched = matchFound
+                        
+                    if matched and matchType and hda.typename != currentDA.typename:
+                        matched = False
+                    if matched and matchContext and hda.context != currentDA.context:
+                        matched = False
+                    if matched and matchNamespace and hda.namespace != currentDA.namespace:
+                        matched = False
+                    if matched and matchVersion and hda.version != currentDA.version:
+                        matched = False
+                    if matched and matchDate and hda.modtime < currentDA.modtime:
+                        matched = False
+                    if matched and matchMinInputs and hda.mininputs != currentDA.mininputs:
+                        matched = False
+                    if matchMaxInputs and hda.maxinputs != currentDA.maxinputs:
+                        matched = False
+                            
+                if matched:
+                    self.FilteredHDAs.append(hda)
+                    currentIndex += 1
+                    if not highlightRow and currentNodeHasHDADefinition and currentDA and currentDA.path == hda.path and currentDA.fulltypename == hda.fulltypename:
+                        highlightRow = True
+                        highlightIndex = currentIndex
+        else:
+            self.FilteredHDAs = self.HDAs[0:self.maxHDACount]
+            
+        rowsize = hou.ui.scaledSize(10)
+        
+        #self.setRowCount(len(self.FilteredHDAs))
+        for index, hda in enumerate(self.FilteredHDAs):
+            self.insertRow(index)
+            self.setRowHeight(index, rowsize)
+            
+            name = "{0} ({1})".format(hda.name, hda.typename)
+            
+            nodename = QtWidgets.QTableWidgetItem(hda.fulltypename)
+            nodename.setFlags(nodename.flags() & ~QtCore.Qt.ItemIsEditable)
+            nodename.setIcon(hda.getQtIcon())
+            
+            nodecontext = QtWidgets.QTableWidgetItem(hda.context)
+            nodecontext.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            nodecontext.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            company = QtWidgets.QTableWidgetItem(hda.company)
+            company.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            company.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            namespace = QtWidgets.QTableWidgetItem(hda.namespace)
+            namespace.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            namespace.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            version = QtWidgets.QTableWidgetItem(hda.version)
+            version.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            version.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            modtime = QtWidgets.QTableWidgetItem(hda.moddate)
+            modtime.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            modtime.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            mininputs = QtWidgets.QTableWidgetItem(str(hda.mininputs))
+            mininputs.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            mininputs.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            maxinputs = QtWidgets.QTableWidgetItem(str(hda.maxinputs))
+            maxinputs.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            maxinputs.setTextAlignment(QtCore.Qt.AlignCenter)
+            
+            isCurrent = hda.isCurrent()
+            current = QtWidgets.QTableWidgetItem("Yes" if isCurrent else "No")
+            current.setFlags(nodecontext.flags() & ~QtCore.Qt.ItemIsEditable)
+            current.setTextAlignment(QtCore.Qt.AlignCenter)
+            if isCurrent:
+                current.setForeground(QtGui.QBrush(QtGui.QColor(0, 255, 0)))
+            
+            self.setItem(index, 0, nodename)
+            self.setItem(index, 1, nodecontext)
+            self.setItem(index, 2, company)
+            self.setItem(index, 3, namespace)
+            self.setItem(index, 4, version)
+            self.setItem(index, 5, modtime)
+            self.setItem(index, 6, mininputs)
+            self.setItem(index, 7, maxinputs)
+            self.setItem(index, 8, current)
+            
+        if highlightRow:
+            #self.selectRow(highlightIndex)
+            print highlightIndex
+            self.scrollToItem(self.selectRow(highlightIndex), QtWidgets.QAbstractItemView.PositionAtTop)
+        else:
+            self.scrollToTop()
+            
+            
+            
+    def keyPressEvent(self, event):
+         key = event.key()
+         
+         if key == QtCore.Qt.Key_F5:
+             self.updateHDAList()
+         else:
+             super(HDATableWidget, self).keyPressEvent(event)
+
+
+
+    def mouseDoubleClickEvent(self, event):
+        widget = self.childAt(event.pos())
+        if widget is not None and widget.objectName():
+            print "double click"
+            
+            
+
+class HDAManager(QtWidgets.QWidget):
+    def __init__(self):
+        super(HDAManager, self).__init__()
+        self.setWindowTitle("HDA Manager")
+        self.setParent(hou.ui.mainQtWindow(), QtCore.Qt.Tool)
+        
+        self.NodeTable = NodeTableWidget()
+        selnodes = self.NodeTable.selectionModel()
+        selnodes.selectionChanged.connect(self.filterHDAs)
+        
+        layout1 = QtWidgets.QVBoxLayout()
+        layout1.setMargin(0)
+        layout1.setSpacing(0)
+        layout1.addWidget(self.NodeTable)
+        
+        self.HDATable = HDATableWidget()
+        selhda = self.HDATable.selectionModel()
+        selhda.selectionChanged.connect(self.updatePathParameter)
+        
+        layout2 = QtWidgets.QVBoxLayout()
+        layout2.setMargin(0)
+        layout2.setSpacing(0)
+        layout2.addWidget(self.HDATable)
+        
+        layout3 = QtWidgets.QVBoxLayout()
+        layout3.setMargin(hou.ui.scaledSize(6))
+        layout3.setSpacing(hou.ui.scaledSize(12))
+        
+        layout4 = QtWidgets.QHBoxLayout()
+        layout4.setMargin(hou.ui.scaledSize(8))
+        layout4.setSpacing(hou.ui.scaledSize(12))
+        
+        layout5 = QtWidgets.QHBoxLayout()
+        layout5.setMargin(0)
+        layout5.setSpacing(hou.ui.scaledSize(2))
+        
+        self.filterText = QtWidgets.QLineEdit("")
+        self.toggleName = QtWidgets.QCheckBox("Name")
+        self.toggleAnyName = QtWidgets.QCheckBox("Any Name")
+        self.toggleType = QtWidgets.QCheckBox("Type")
+        self.toggleContext = QtWidgets.QCheckBox("Context")
+        self.toggleNamespace = QtWidgets.QCheckBox("Namespace")
+        self.toggleVersion = QtWidgets.QCheckBox("Version")
+        self.toggleDate = QtWidgets.QCheckBox("Date")
+        #self.toggleMinInputs = QtWidgets.QCheckBox("Min Inputs")
+        #self.toggleMaxInputs = QtWidgets.QCheckBox("Max Inputs")
+        
+        self.filterText.textChanged.connect(self.filterHDAs)
+        self.toggleName.clicked.connect(self.filterHDAs)
+        self.toggleAnyName.clicked.connect(self.filterHDAs)
+        self.toggleType.clicked.connect(self.filterHDAs)
+        self.toggleContext.clicked.connect(self.filterHDAs)
+        self.toggleNamespace.clicked.connect(self.filterHDAs)
+        self.toggleVersion.clicked.connect(self.filterHDAs)
+        self.toggleDate.clicked.connect(self.filterHDAs)
+        #self.toggleMinInputs.clicked.connect(self.filterHDAs)
+        #self.toggleMaxInputs.clicked.connect(self.filterHDAs)
+        
+        self.toggleAnyName.setCheckState(QtGui.Qt.CheckState.Checked)
+        self.toggleContext.setCheckState(QtGui.Qt.CheckState.Checked)
+        
+        formlayout = QtWidgets.QFormLayout()
+        formlayout.addRow("Filter", self.filterText)
+        layout4.addLayout(formlayout)
+        
+        #layout4.addWidget(formlayout)
+        layout4.addWidget(self.toggleName)
+        layout4.addWidget(self.toggleAnyName)
+        layout4.addWidget(self.toggleType)
+        layout4.addWidget(self.toggleContext)
+        layout4.addWidget(self.toggleNamespace)
+        layout4.addWidget(self.toggleVersion)
+        layout4.addWidget(self.toggleDate)
+        #layout4.addWidget(self.toggleMinInputs)
+        #layout4.addWidget(self.toggleMaxInputs)
+        
+        matchby = QtWidgets.QGroupBox("Match By")
+        matchby.setLayout(layout4)
+        
+        self.labelPath = QtWidgets.QLabel("Path: N/A")
+        self.labelPath.setSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Fixed)
+        
+        layout3.addWidget(matchby)
+        layout5.addWidget(self.labelPath)
+        
+        layout2.addLayout(layout3)
+        layout3.addLayout(layout5)
+        
+        mainlayout = QtWidgets.QHBoxLayout()        
+        mainlayout.setMargin(0)
+        mainlayout.setSpacing(0)
+        mainlayout.addLayout(layout1, stretch=2)
+        mainlayout.addLayout(layout2, stretch=3)
+        
+        useDefinition = QtWidgets.QPushButton("Use Definition")
+        localizeHDAs = QtWidgets.QPushButton("Localize HDAs")
+        
+        useDefinition.clicked.connect(self.useThisHDADefinition)
+        localizeHDAs.clicked.connect(self.localizeHDADefinition)
+        
+        buttonsize = hou.ui.scaledSize(110)
+        useDefinition.setMinimumWidth(buttonsize)
+        useDefinition.setMaximumWidth(buttonsize)
+        localizeHDAs.setMinimumWidth(buttonsize)
+        localizeHDAs.setMaximumWidth(buttonsize)
+        
+        layout5.addWidget(useDefinition)
+        layout5.addWidget(localizeHDAs)
+        
+        self.setLayout(mainlayout) 
+        
+        self.show()
+        
+    
+        
+    def useThisHDADefinition(self):
+        with hou.undos.group("Change HDA Definition"):
+            self.NodeTable.ActiveSync = False
+            
+            self.HDATable.installSelectedHDA()
+            currentNode = self.NodeTable.getCurrentNode()
+            if currentNode:
+                isLocked = currentNode.isLockedHDA()
+                hda = self.HDATable.getCurrentHDA()
+                currentNode.changeNodeType(hda.fulltypename)
+                selectedNodes = hou.selectedNodes()
+                if selectedNodes and isLocked and not selectedNodes[0].isLockedHDA():
+                    selectedNodes[0].matchCurrentDefinition()
+                    
+            self.NodeTable.updateNodeList()
+            self.NodeTable.ActiveSync = True
+            
+            
+            
+    def localizeHDADefinition(self):
+        localizeHDAs()
+        
+        
+        
+    def updatePathParameter(self):
+        hda = self.HDATable.getCurrentHDA()        
+        label = "Path: N/A"
+        if hda:
+            label = "Path: " + hda.path
+            
+        self.labelPath.setText(label)
+        
+        
+        
+    def filterHDAs(self):
+        currentNode = self.NodeTable.getCurrentNode()
+        self.HDATable.updateHDAList(currentNode=currentNode, filter=self.filterText.text(), matchName=self.toggleName.isChecked(), matchAnyName=self.toggleAnyName.isChecked(), matchType=self.toggleType.isChecked(), matchContext=self.toggleContext.isChecked(), matchNamespace=self.toggleNamespace.isChecked(), matchVersion=self.toggleVersion.isChecked(), matchDate=self.toggleDate.isChecked())
+        
+        
+        
+    def syncSelectedNode(self, selectedNode):
+        self.NodeTable.syncSelectedNode(selectedNode)
+        
+        
+        
+    def refresh(self):
+        self.NodeTable.updateNodeList()
+        self.HDATable.updateHDAList()
+        
+        
+        
+    def keyPressEvent(self, event):
+         key = event.key()
+         
+         if key == QtCore.Qt.Key_F5:
+             self.refresh()
+         #else:
+         #    super(NodeTableWidget, self).keyPressEvent(event)
+        
+        
+        
+    #def keyPressEvent(self, event):
+    #    if event.key() == QtCore.Qt.Key_Escape:
+    #        print "ESC"
+    #        
+    #    event.accept()
+
+
+
+from hutil.Qt import QtWidgets
+
+def onCreateInterface():
+    widget = HDAManager()
+    return widget]]></script>
+    <includeInToolbarMenu menu_position="107" create_separator="false"/>
+    <help><![CDATA[]]></help>
+  </interface>
+</pythonPanelDocument>

@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="superchargedHoudiniShelf" label="Supercharged">
+    <memberTool name="pasteRandomNumber"/>
+    <memberTool name="showRecentlyOpenedFiles"/>
+    <memberTool name="showCurrentHipFilename"/>
+    <memberTool name="clearStatusBarMessage"/>
+    <memberTool name="currentViewportEnterViewState"/>
+    <memberTool name="currentViewportToggleHiddenLineInvisible"/>
+    <memberTool name="currentViewportToggleWireframe"/>
+    <memberTool name="currentViewportSetToFlatShaded"/>
+    <memberTool name="currentViewportSetToFlatWireShaded"/>
+    <memberTool name="currentViewportSetToSmoothShaded"/>
+    <memberTool name="currentViewportSetToSmoothWireShaded"/>
+    <memberTool name="toggleNetworkEditorGrid"/>
+    <memberTool name="fullscreenSession"/>
+    <memberTool name="toggleOverlayNetworkEditor"/>
+    <memberTool name="toggleNetworkEditor"/>
+    <memberTool name="toggleDetailsView"/>
+    <memberTool name="togglePerfMon"/>
+    <memberTool name="toggleParameterEditor"/>
+    <memberTool name="toggleSceneView"/>
+    <memberTool name="toggleSceneRenderView"/>
+    <memberTool name="toggleParameterEditorMaterialPalette"/>
+    <memberTool name="updateOverlayNetworkEditorPosSize"/>
+    <memberTool name="setOpacityTo25"/>
+    <memberTool name="setOpacityTo50"/>
+    <memberTool name="setOpacityTo75"/>
+    <memberTool name="setOpacityTo100"/>
+    <memberTool name="pushInNodes"/>
+    <memberTool name="pushOutNodes"/>
+    <memberTool name="toggleUpdateMode"/>
+    <memberTool name="currentViewportFrameSelected"/>
+    <memberTool name="currentViewportFrameAll"/>
+    <memberTool name="selectableTemplateSelectedNodes"/>
+    <memberTool name="jumpUpOneLevel"/>
+    <memberTool name="diveInsideNearestNode"/>
+    <memberTool name="currentViewportSwitchToPerspective"/>
+    <memberTool name="currentViewportSwitchToTop"/>
+    <memberTool name="currentViewportSwitchToFront"/>
+    <memberTool name="currentViewportSwitchToRight"/>
+    <memberTool name="currentViewportSwitchToUV"/>
+    <memberTool name="currentViewportToggleViewState"/>
+    <memberTool name="resetNetworkLevelZoom"/>
+    <memberTool name="sortNodeInputs"/>
+    <memberTool name="restartPlayback"/>
+    <memberTool name="goToFirstFrame"/>
+  </toolshelf>
+
+<tool name="pasteRandomNumber" label="Paste Random Number" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import pasteRandomNumber
+pasteRandomNumber()
+]]></script>
+  </tool>
+
+<tool name="showRecentlyOpenedFiles" label="Show Recently Opened Files" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import showRecentlyOpenedFiles
+showRecentlyOpenedFiles()
+]]></script>
+  </tool>
+
+<tool name="showCurrentHipFilename" label="Show Current Hip Filename" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import showCurrentHipFilename
+showCurrentHipFilename()
+]]></script>
+  </tool>
+
+<tool name="clearStatusBarMessage" label="Clear Status Bar Message" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import clearStatusBarMessage
+clearStatusBarMessage()
+]]></script>
+  </tool>
+
+<tool name="currentViewportEnterViewState" label="Current Viewport Enter View State" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportEnterViewState
+currentViewportEnterViewState()
+]]></script>
+  </tool>
+
+<tool name="currentViewportToggleHiddenLineInvisible" label="Current Viewport Toggle Hidden Line Invisible" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportToggleHiddenLineInvisible
+currentViewportToggleHiddenLineInvisible()
+]]></script>
+  </tool>
+
+<tool name="currentViewportToggleWireframe" label="Current Viewport Toggle Wireframe" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportToggleWireframe
+currentViewportToggleWireframe()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSetToFlatShaded" label="Current Viewport Toggle Set To Flat Shaded" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSetToFlatShaded
+currentViewportSetToFlatShaded()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSetToFlatWireShaded" label="Current Viewport Toggle Set To Flat Wire Shaded" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSetToFlatWireShaded
+currentViewportSetToFlatWireShaded()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSetToSmoothShaded" label="Current Viewport Toggle Set To Smooth Shaded" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSetToSmoothShaded
+currentViewportSetToSmoothShaded()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSetToSmoothWireShaded" label="Current Viewport Toggle Set To Smooth Wire Shaded" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSetToSmoothWireShaded
+currentViewportSetToSmoothWireShaded()
+]]></script>
+  </tool>
+
+<tool name="toggleNetworkEditorGrid" label="Toggle Network Editor Grid" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import toggleNetworkEditorGrid
+toggleNetworkEditorGrid()
+]]></script>
+  </tool>
+
+<tool name="fullscreenSession" label="Fullscreen Session" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import fullscreenSession
+fullscreenSession()
+]]></script>
+  </tool>
+
+<tool name="toggleOverlayNetworkEditor" label="Toggle Overlay Network Editor" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import toggleOverlayNetworkEditor
+toggleOverlayNetworkEditor()
+]]></script>
+  </tool>
+
+<tool name="toggleNetworkEditor" label="Toggle Network Editor" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+try:
+    from utility_overlay_network_editor import toggleNetworkEditor
+except:
+    from utility_ui import toggleNetworkEditor
+
+toggleNetworkEditor()
+]]></script>
+  </tool>
+
+<tool name="toggleDetailsView" label="Toggle Details View" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import togglePanel
+togglePanel("animatrix_details_view", hou.paneTabType.DetailsView, 0.1)
+]]></script>
+  </tool>
+
+<tool name="togglePerfMon" label="Toggle Performance Monitor" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import togglePanel
+togglePanel("animatrix_performance_monitor", hou.paneTabType.PerformanceMonitor, 0.2)
+]]></script>
+  </tool>
+
+<tool name="toggleParameterEditor" label="Toggle Parameter Editor" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import togglePanel
+togglePanel("animatrix_parameter_editor", hou.paneTabType.Parm, 0.69)
+]]></script>
+  </tool>
+
+<tool name="toggleSceneView" label="Toggle Scene View" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import togglePanel
+togglePanel("animatrix_viewport", hou.paneTabType.SceneViewer, 0.5)
+]]></script>
+  </tool>
+
+<tool name="toggleSceneRenderView" label="Toggle Scene Render View" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import toggleSceneRenderView
+toggleSceneRenderView()
+]]></script>
+  </tool>
+
+<tool name="toggleParameterEditorMaterialPalette" label="Toggle Parameter Editor Material Palette" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import toggleParameterEditorMaterialPalette
+toggleParameterEditorMaterialPalette()
+]]></script>
+  </tool>
+
+<tool name="updateOverlayNetworkEditorPosSize" label="Update Overlay Network Editor Pos Size" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import updateOverlayNetworkEditorPosSize
+updateOverlayNetworkEditorPosSize()
+]]></script>
+  </tool>
+
+<tool name="setOpacityTo25" label="Set Opacity To 25%" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import setOverlayNetworkEditorOpacity
+setOverlayNetworkEditorOpacity(0.25)
+]]></script>
+  </tool>
+
+<tool name="setOpacityTo50" label="Set Opacity To 50%" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import setOverlayNetworkEditorOpacity
+setOverlayNetworkEditorOpacity(0.5)
+]]></script>
+  </tool>
+
+<tool name="setOpacityTo75" label="Set Opacity To 75%" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import setOverlayNetworkEditorOpacity
+setOverlayNetworkEditorOpacity(0.75)
+]]></script>
+  </tool>
+
+<tool name="setOpacityTo100" label="Set Opacity To 100%" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_overlay_network_editor import setOverlayNetworkEditorOpacity
+setOverlayNetworkEditorOpacity(1)
+]]></script>
+  </tool>
+
+<tool name="pushInNodes" label="Push In Nodes" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import pushNodes
+pushNodes(kwargs)
+]]></script>
+  </tool>
+
+<tool name="pushOutNodes" label="Push Out Nodes" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import pushNodes
+pushNodes(kwargs, inside=False)
+]]></script>
+  </tool>
+
+<tool name="toggleUpdateMode" label="Toggle Update Mode" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import toggleUpdateMode
+toggleUpdateMode()
+]]></script>
+  </tool>
+
+<tool name="currentViewportFrameSelected" label="Current Viewport Frame Selected" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportFrameSelected
+currentViewportFrameSelected()
+]]></script>
+  </tool>
+
+<tool name="currentViewportFrameAll" label="Current Viewport Frame All" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportFrameAll
+currentViewportFrameAll()
+]]></script>
+  </tool>
+
+<tool name="selectableTemplateSelectedNodes" label="Selectable Template Selected Nodes" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import selectableTemplateSelectedNodes
+selectableTemplateSelectedNodes()
+]]></script>
+  </tool>
+
+<tool name="jumpUpOneLevel" label="Jump Up One Level" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import jumpUpOneLevel
+jumpUpOneLevel()
+]]></script>
+  </tool>
+
+<tool name="diveInsideNearestNode" label="Dive Inside Nearest Node" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import diveInsideNearestNode
+diveInsideNearestNode()
+]]></script>
+  </tool>
+
+<tool name="jumpDownNearestOneLevel" label="Jump Down Nearest One Level" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import jumpDownNearestOneLevel
+jumpDownNearestOneLevel()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSwitchToPerspective" label="Current Viewport Switch To Perspective" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSwitchToPerspective
+currentViewportSwitchToPerspective()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSwitchToTop" label="Current Viewport Switch To Top" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSwitchToTop
+currentViewportSwitchToTop()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSwitchToFront" label="Current Viewport Switch To Front" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSwitchToFront
+currentViewportSwitchToFront()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSwitchToRight" label="Current Viewport Switch To Right" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSwitchToRight
+currentViewportSwitchToRight()
+]]></script>
+  </tool>
+
+<tool name="currentViewportSwitchToUV" label="Current Viewport Switch To UV" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_hotkey_system import currentViewportSwitchToUV
+currentViewportSwitchToUV()
+]]></script>
+  </tool>
+
+<tool name="currentViewportToggleViewState" label="Current Viewport Toggle View State" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import currentViewportToggleViewState
+currentViewportToggleViewState()
+]]></script>
+  </tool>
+
+<tool name="resetNetworkLevelZoom" label="Reset Network Level Zoom" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_ui import resetNetworkEditorZoomLevelFromMousePos
+resetNetworkEditorZoomLevelFromMousePos()
+]]></script>
+  </tool>
+
+<tool name="sop_gnomon" label="Gnomon" icon="SOP_matchaxis">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Primitive</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'gnomon', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Gnomon'")
+]]></script>
+  </tool>
+
+<tool name="sortNodeInputs" label="Sort Node Inputs" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_generic import sortNodeInputs
+sortNodeInputs()
+]]></script>
+  </tool>
+
+<tool name="restartPlayback" label="Restart Playback" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_generic import restartPlayback
+restartPlayback()
+]]></script>
+  </tool>
+
+<tool name="goToFirstFrame" label="Go to First Frame" icon="SOP_polyextrude">
+    <script scriptType="python"><![CDATA[
+from utility_generic import goToFirstFrame
+goToFirstFrame()
+]]></script>
+  </tool>
+
+<tool name="sop_gnomon" label="Gnomon" icon="SOP_matchaxis">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Primitive</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'gnomon', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Gnomon'")
+]]></script>
+  </tool>
+
+<tool name="sop_normalize" label="Normalize" icon="SOP_xform">
+    <helpURL>operator:Sop/xform</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/xform</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Manipulate</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'xform', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'normalize', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Normalize'")
+]]></script>
+  </tool>
+
+<tool name="sop_octahedron" label="Octahedron" icon="SOP_platonic">
+    <helpURL>operator:Sop/add</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/add</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Primitive</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'add', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'octahedron', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Octahedron'")
+]]></script>
+  </tool>
+
+<tool name="sop_particle_gnomon" label="Particle Gnomon" icon="SOP_matchaxis">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Primitive</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'particle_gnomon', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Particle Gnomon'")
+]]></script>
+  </tool>
+
+<tool name="sop_pt_distance" label="Point Point Distance" icon="VOP_distance">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Utility</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'pt_distance', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Point Point Distance'")
+]]></script>
+  </tool>
+
+<tool name="sop_select_border_points_by_prim_attrib" label="Select Border Points by Prim Attrib" icon="SOP_group">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Attribute</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'select_border_pts_by_prim_attrib', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Select Border Points by Primitive Attribute'")
+]]></script>
+  </tool>
+
+<tool name="sop_tetrahedron" label="Tetrahedron" icon="SOP_platonic">
+    <helpURL>operator:Sop/add</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/add</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Primitive</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'add', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'tetrahedron', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Tetrahedron'")
+]]></script>
+  </tool>
+
+<tool name="sop_timeshift_firstframe" label="Time Shift [First Frame]" icon="SOP_timeshift">
+    <helpURL>operator:Sop/timeshift</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/timeshift</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Utility</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'timeshift', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'first_frame', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'First Frame'")
+]]></script>
+  </tool>
+
+<tool name="sop_varmap" label="Varmap" icon="SOP_attribcreate">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Attribute</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'attribwrangle', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'varmap', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'Varmap'")
+]]></script>
+  </tool>
+
+<tool name="sop_vexify_geometry" label="VEXify Geometry" icon="SOP_vex">
+    <helpURL>operator:Sop/attribwrangle</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/attribwrangle</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Utility</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'python', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'vexify_geometry', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'VEXify Geometry'")
+]]></script>
+  </tool>
+
+<tool name="sop_vdbcombine_union" label="VDB Combine [SDF Union]" icon="SOP_OpenVDB">
+    <helpURL>operator:Sop/vdbcombine</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/vdbcombine</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>VDB</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'vdbcombine', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'sdf_union', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'SDF Union'")
+]]></script>
+  </tool>
+
+<tool name="sop_vdbcombine_intersection" label="VDB Combine [SDF Intersection]" icon="SOP_OpenVDB">
+    <helpURL>operator:Sop/vdbcombine</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/vdbcombine</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>VDB</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'vdbcombine', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'sdf_intersection', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'SDF Intersection'")
+]]></script>
+  </tool>
+
+<tool name="sop_vdbcombine_difference" label="VDB Combine [SDF Difference]" icon="SOP_OpenVDB">
+    <helpURL>operator:Sop/vdbcombine</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Sop/vdbcombine</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>VDB</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import soptoolutils
+
+node = soptoolutils.genericTool(kwargs, 'vdbcombine', exact_node_type=False)
+node.setName(node.type().nameComponents()[2] + '_' + 'sdf_difference', unique_name=True)
+hou.hscript("oppresetload " + node.path() + " 'SDF Difference'")
+]]></script>
+  </tool>
+
+<tool name="vex_global_P" label="Global: P" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('P')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'P', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_N" label="Global: N" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('N')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'N', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_v" label="Global: Velocity" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('v')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'v', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_force" label="Global: Force" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('force')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'force', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_Cd" label="Global: Cd" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('Cd')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'Cd', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_uv" label="Global: UV" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('uv')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'uv', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_center" label="Global: Volume Center" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('center')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'center', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_orig" label="Global: Volume Origin" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('orig')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'orig', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_size" label="Global: Volume Size" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('size')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'size', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_BB" label="Global: Volume P in BBox" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('BB')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'BB', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_dPdx" label="Global: Volume dPdx" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('dPdx')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'dPdx', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_dPdy" label="Global: Volume dPdy" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('dPdy')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'dPdy', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_dPdz" label="Global: Volume dPdz" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('dPdz')
+node.parm('parmtype').set('vector')
+node.setName(node.type().nameComponents()[2] + '_' + 'dPdz', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_age" label="Global: Age" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('age')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'age', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_nage" label="Global: Age Normalized" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('nage')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'nage', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_life" label="Global: Life" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('life')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'life', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_Time" label="Global: Time" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('Time')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'Time', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_TimeInc" label="Global: TimeInc" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('TimeInc')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'TimeInc', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_Frame" label="Global: Frame" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('Frame')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'Frame', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_density" label="Global: Density" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('density')
+node.parm('parmtype').set('float')
+node.setName(node.type().nameComponents()[2] + '_' + 'density', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_id" label="Global: Id" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('id')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'id', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_ptnum" label="Global: Point Number" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('ptnum')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'ptnum', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_primnum" label="Global: Primitive Number" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('primnum')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'primnum', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_vtxnum" label="Global: Vertex Number" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('vtxnum')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'vtxnum', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_numpt" label="Global: Number of Points" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('numpt')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'numpt', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_numprim" label="Global: Number of Primitives" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('numprim')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'numprim', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_numvtx" label="Global: Number of Vertices" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('numvtx')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'numvtx', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_ix" label="Global: Volume Index X" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('ix')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'ix', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_iy" label="Global: Volume Index Y" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('iy')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'iy', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_iz" label="Global: Volume Index Z" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('iz')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'iz', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_resx" label="Global: Volume Resolution X" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('resx')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'resx', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_resy" label="Global: Volume Resolution Y" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('resy')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'resy', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_resz" label="Global: Volume Resolution Z" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('resz')
+node.parm('parmtype').set('int')
+node.setName(node.type().nameComponents()[2] + '_' + 'resz', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_OpInput1" label="Global: Input 1" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('OpInput1')
+node.parm('parmtype').set('string')
+node.setName(node.type().nameComponents()[2] + '_' + 'OpInput1', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_OpInput2" label="Global: Input 2" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('OpInput2')
+node.parm('parmtype').set('string')
+node.setName(node.type().nameComponents()[2] + '_' + 'OpInput2', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_OpInput3" label="Global: Input 3" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('OpInput3')
+node.parm('parmtype').set('string')
+node.setName(node.type().nameComponents()[2] + '_' + 'OpInput3', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_global_OpInput4" label="Global: Input 4" icon="VOP_inline">
+    <helpURL>operator:Vop/bind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/bind</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Globals</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'bind', exact_node_type=False)
+node.parm('exportparm').set('whenconnected')
+node.parm('parmname').set('OpInput4')
+node.parm('parmtype').set('string')
+node.setName(node.type().nameComponents()[2] + '_' + 'OpInput4', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_PI" label="Constant: PI" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('$PI', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + 'PI', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_2PI" label="Constant: 2 PI" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('2 * $PI', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + '2PI', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_PI2" label="Constant: PI / 2" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('0.5 * $PI', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + 'PI_2', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_PI4" label="Constant: PI / 4" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('0.25 * $PI', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + 'PI_4', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_golden_ratio" label="Constant: Golden Ratio" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').set('1.61803398875')
+node.setName(node.type().nameComponents()[2] + '_' + 'golden_ratio', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_e" label="Constant: e" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').set('2.718281828459')
+node.setName(node.type().nameComponents()[2] + '_' + 'e', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_sqrt2" label="Constant: Sqrt(2)" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('sqrt(2)', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + 'sqrt2', unique_name=True)
+]]></script>
+  </tool>
+
+<tool name="vex_constant_sqrt3" label="Constant: Sqrt(3)" icon="VOP_constant">
+    <helpURL>operator:Vop/constant</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Vop/constant</contextOpType>
+    </toolMenuContext>
+    <toolSubmenu>Constants</toolSubmenu>
+    <script scriptType="python"><![CDATA[
+import voptoolutils
+
+node = voptoolutils.genericTool(kwargs, 'constant', exact_node_type=False)
+node.parm('consttype').set('float')
+node.parm('floatdef').setExpression('sqrt(3)', hou.exprLanguage.Hscript)
+node.setName(node.type().nameComponents()[2] + '_' + 'sqrt3', unique_name=True)
+]]></script>
+  </tool>
+
+  <shelfSetEdit name="shelf_set_1" fileLocation="C:/PROGRA~1/SIDEEF~1/HOUDIN~1.287/houdini/toolbar/ShelfDefinitions.shelf">
+    <addMemberToolshelf name="shelf_1" inPosition="17"/>
+  </shelfSetEdit>
+</shelfDocument>

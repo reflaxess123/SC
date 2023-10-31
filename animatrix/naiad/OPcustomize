@@ -1,0 +1,6 @@
+opdefaultshape -c
+opdefaultshape Sop animatrix
+opdefaultshape Dop animatrix
+opdefaultshape Cop2 animatrix
+opdefaultshape Chop animatrix
+opdefaultshape Object animatrix
